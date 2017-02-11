@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Giphy</title>
+	<!-- https://github.com/Giphy/GiphyAPI
+	### Step 3 - Make an array of things
+	* We made an array of animals and made buttons out of them. You should choose a list of your own liking. Maybe it's tv shows or musicians.
+	* When you click on a button, we get 10 images from giphy and put them on the page. 
+	* When you click on the image, the gif plays. When you click again, the gif stops playing.
+	* You can use a form that takes the value and puts it into the array and remakes the buttons on the page.
+	* Display the rating of the image on the page (PG, G, etc...). This data is provided by the giphy api. -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<script src="https://code.jquery.com/jquery.js"></script>
+
+    <style type="text/css">
+        body {
+            font-family: 'Verdana', 'Helvetica', 'Times New Roman', sans-serif;
+            /*background-image: url("../images/background.png");*/
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100%;
+            margin: 0px auto;
+        }
+
+        p {
+            padding: 15px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            padding-bottom: 25px;
+        }
+
+        button {
+            margin: 2px;
+        }
+
+        img {
+        	width: 300px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-fluid">
+        <h1>Giphy</h1>
+            <div id="buttons" class="text-center"></div>
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <p>Click on a button above to view animated GIFs in that category</p>
+                            <p>
+                                <label for="txtCategory">Add New Category:</label>
+                                <input type="text" name="txtCategory" placeholder="Category" class="form-control">
+                                <button id="btnSubmit" type="button" class="btn btn-primary">Submit</button>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4"></div>
+                </div>
+				<div class="row" id="images">
+					<div class="col-lg-4" id="first-col"></div>
+					<div class="col-lg-4" id="second-col"></div>
+					<div class="col-lg-4" id="third-col"></div>
+					<div class="col-lg-4" id="four-col"></div>
+				</div>            
+			</form>
+        </div>
+    </div>
+
+	<script type="text/javascript">
+        $(document).ready(function(){
+            var categories = ["movies", "actors", "faces", "emotions", "gaming", "music", "holidays", "nature", "sports", "reactions"];
+            var selectedCategory; 
+
+            // Add new category to array
+            function addCategory(category) {
+                categories.push(category);
+                displayButtons();
+
+                var form = document.querySelector("form");
+                form.elements.txtCategory.value = "";
+            }
+
+            // Dynamically display buttons for each category in the array
+            function displayButtons() {
+                var buttons = $("#buttons");
+
+                buttons.empty();
+
+                for (var i = 0; i < categories.length; i++) {
+		            var button = '<button id="button-' + i + '" type="button" class="btn btn-primary" value="' + categories[i] + '"">' + categories[i] + '</button>';
+		            buttons.append(button);
+		        }
+            }
+
+            // Dynamically display images for each image in the array passed
+            function displayImages(imgArray) {
+                var images = $("#images");
+                images.empty();
+
+                for (var i = 0; i < 12; i++) {
+		            var img = '<img src="' + imgArray.data[i].images.fixed_height.url + 
+                    '" data-still="'+ imgArray.data[i].images.fixed_height_still.url + 
+                    '" data-animate="'+ imgArray.data[i].images.fixed_height.url + 
+                    '" data-state="animate"' +
+                    '" alt="Image" class="img-rounded">';
+
+					if (i == 3) {
+					 $("#first-col").append(img);  
+					} else if (i == 6) {
+					    $("#second-col").append(img);
+					} else if (i == 9) {
+					    $("#third-col").append(img);
+					} else if (i == 12) {
+					    $("#four-col").append(img);
+					}
+		            images.append("<div class='col-lg-4'><h4>Rated: " + imgArray.data[i].rating + "</h4>" + img + '</div>');
+		        }
+            }
+
+            // Add a button for the new category
+		    $("#btnSubmit").on("click", function () {
+		        var form = document.querySelector("form");
+		        var category = form.elements.txtCategory.value
+		        addCategory(category);
+		    });
+
+            // Get the name of the new category
+		    $("#buttons").on("click", "button", function () {
+		        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC&q=";
+		        var buttonClicked = this;
+
+		        // Get the text of the button that was clicked, which is the Category
+		        selectedCategory = buttonClicked.value; 
+		        console.log("Giphy Category: " + selectedCategory);
+		        queryURL += selectedCategory;
+
+		        // Call the Giphy API to get 12 images of the selected category
+		        $.ajax({ url: queryURL, method: 'GET' })
+                 .done(function (response) {
+                	console.log(response);
+                	displayImages(response);
+                 });
+		    });
+
+            // If image was clicked and the gif is animated, show the still gif, otherwise, show animated gif
+		    $('body').on('click','img', function() {
+                var state = $(this).attr("data-state");
+
+                if (state == "still") {
+                    $(this).attr("src", $(this).attr("data-animate"));
+                    $(this).attr("data-state", "animate");
+                } else if (state == "animate") {
+                    $(this).attr("src", $(this).attr("data-still"));
+                    $(this).attr("data-state", "still");
+                }
+		    });
+
+		    displayButtons();
+        });
+	</script>
+</body>
+</html>

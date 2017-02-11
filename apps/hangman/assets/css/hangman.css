@@ -1,0 +1,37 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Verdana', 'Helvetica', sans-serif;
+    color: black;
+    background-image: url("../images/background.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100%;
+    margin: 10px auto;
+    text-align: center;
+    font-size: 25px;
+}
+
+h1 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 300%;
+    padding-bottom: 25px;
+}
+
+h2 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 150%;
+    padding-bottom: 25px;
+}
+
+p {
+    padding-bottom: 20px;
+}
+
+.letters {
+    font-family: 'Monofett', cursive;
+    font-size: 50px;
+    letter-spacing: 10px;
+}

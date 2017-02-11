@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Loop through arrays</title>
+</head>
+<body>
+
+<script>
+	var rounds = 5;
+	var rps = ["RP", 2, "RS", 1, "PR", 1, "PS", 2, "SP", 1, "SR", 2];
+	var Players = ["0", "1", "2"];
+
+	// Prompt Players for Name
+	Players[1] = prompt("Enter Player 1's Name");
+	Players[2] = prompt("Enter Player 2's Name");
+
+
+	// Prompt Players for Choice of R for Rock, P for Paper, or S for Scissor
+	var Player1Choice = prompt(Players[1] + ", enter R, P, or S");
+	var Player2Choice = prompt(Players[2] + ", enter R, P, or S");
+
+	//Upper case the Choices
+	// Player1Choice = Player1Choice.Upper;
+	// Player2Choice = Player1Choice.Upper;
+
+	if (Player1Choice == Player2Choice) {
+    	alert("It's a tie, try again");
+	}
+
+	var Choices = Player1Choice + Player2Choice;
+	console.log("Choices " + Choices);
+
+	// Loops through each index of the array 
+	for (var i = 0; i < rps.length; i+=2) {
+		var TestCondition = rps[i];
+
+		console.log(rps[i] + rps[i+1]);
+
+		if (Choices == TestCondition) {
+	    	//alert("Player " + rps[i+1] + " wins!");
+	    	alert(Players[rps[i+1]] + " wins!")
+		}		
+	} 
+</script>
+	
+</body>
+</html>

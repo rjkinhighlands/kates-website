@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Crystals Collector</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<!-- <link rel="stylesheet" type="text/css" href="assets/css/reset.css" -->
+   		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Kaushan+Script|Monofett">  	
+		<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+		<script src="https://code.jquery.com/jquery.js"></script>
+	</head>
+
+	<body>
+		<div class="container">
+			<div class="row">
+				<h1 class="text-center"><strong>Crystals Collector!</strong></h1>
+			</div>
+			<div class="row">
+				<div class="col-md-04">
+				</div>
+				<div class="col-md-04">
+					<p>You will be given a random number at the start of the game</p>
+					<p>There are four crystals below. By clicking on a crystal you will add a specific amount of points to your score.</p>
+					<p>You win the game by matching your total score to the random number. You lose the game if your total score goes above the random number</p>
+					<p>The value of each crystal is hidden from you until you click on it.</p>
+					<p>Each time when the game starts, the game will change the values of each crystal.</p>
+					<div id="randomNum">
+						0
+					</div>
+					<div id="winslosses">
+						Wins:&nbsp;&nbsp;&nbsp;0<br/>
+						Losses:&nbsp;0<br/>
+					</div>
+					<div class="crystals">
+						<img src="assets/images/cube.jpg" alt="cube" class="img crystal" id="cube" />
+						<img src="assets/images/diamond.jpg" alt="diamond" class="img crystal"  id="diamond" />
+						<img src="assets/images/esmerald.jpg" alt="esmerald" class="img crystal" id="esmerald" />
+						<img src="assets/images/square.jpg" alt="square" class="img crystal" id="square" />
+					</div>
+					<div id="scoreTxt">
+						Your total score is: 
+					</div>
+					<div id="score">
+						0
+					</div>
+				</div>
+				<div class="col-md-04">
+				</div>
+			</div>
+		</div>
+
+		<script src="assets/javascript/game.js"></script>
+	</body>
+</html>

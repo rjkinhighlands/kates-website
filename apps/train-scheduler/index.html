@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Template</title>
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!-- Bootswatch Styling for Improving the Aesthetics -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/flatly/bootstrap.min.css">
+
+	<!-- Font Awesome CSS Icons (For cool glyphicons) -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+	  <!-- Firebase Reference -->
+	  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+	  <!-- Moment Reference -->
+	  <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>	
+	
+	 <link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+	<!-- Style to fix the issue of text extending past panel length -->
+	<style>
+		.panel-body a 
+		{
+		    word-break:break-all
+		}
+	</style></head>
+<body>
+<!-- Main Bootstrap Search -->
+<div class="container">
+
+	<!-- Jumbotron for Title -->
+	<div class="jumbotron">
+		<h1 class="text-center"><strong><i class="fa fa-newspaper-o"></i>&nbsp;Anytime is Train Time</strong></h1>
+	</div>
+
+	<!-- This row will handle all of the retrieved articles -->
+	<div class="row">
+		<div class="col-sm-12">
+			<br />
+
+			<!-- This panel will initially be made up of a panel and rows for each of the articles retrieved -->
+			<div class="panel panel-primary">
+
+				<!-- Panel Heading for the retrieved articles box -->
+				<div class="panel-heading">
+					<h3 class="panel-title"><strong><i class="fa fa-table"></i>&nbsp;Current Train Schedule</strong></h3>
+				</div>
+
+				<!-- This main panel will hold each of the resulting articles -->
+				<div class="panel-body" id="rowSection">
+					<table class="table table-hover" id='trainTable'>
+						<thead>
+							<tr>
+								<th>Train Name</th>
+								<th>Destination</th>
+								<th>Frequency (min)</th>
+								<th>Next Arrival</th>
+								<th>Minutes Away</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Row for Searching -->
+	<div class="row">
+		<div class="col-sm-12">
+			<br/>
+			<!-- First panel is for handling the search parameters -->
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title"><strong><i class="fa  fa-list-alt"></i>&nbsp;Add Train</strong></h3>
+				</div>
+				<div class="panel-body">
+
+					<!-- Here we create an HTML Form for handling the inputs-->
+					<form role="form">
+
+					  <div class="form-group" id="frmMain">
+					    <label for="txtTrainName">Train Name:</label>
+					    <input type="text" class="form-control" id="txtTrainName">
+					  </div>
+
+					  <div class="form-group">
+					    <label for="txtDestination">Destination:</label>
+					    <input type="text" class="form-control" id="txtDestination">
+					  </div>
+
+					  <div class="form-group">
+					    <label for="txtTrainTime">First Train Time (HH:mm - military time):</label>
+					    <input type="text" class="form-control" id="txtTrainTime">
+					  </div>
+
+					  <div class="form-group">
+					    <label for="txtFrequency">Frequency (min):</label>
+					    <input type="text" class="form-control" id="txtFrequency">
+					  </div>
+
+					  <!-- Here we have our final submit button -->
+					  <button type="submit" class="btn btn-default" id="btnSubmit"><i class="fa fa-search"></i>&nbsp;Submit</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer Region -->
+	<div class="row">
+		<div class="col-sm-12">
+			<!-- Line Break followed by closing -->
+			<hr>
+			<h5 class="text-center"><small>Made by Gracie &nbsp; <i class="fa fa-heart"></i></small></h5>
+
+		</div>
+	</div>
+
+<script src="https://code.jquery.com/jquery.js" type="text/javascript" ></script>
+<script src="js/main.js" type="text/javascript" ></script>
+</body>
+</html>
